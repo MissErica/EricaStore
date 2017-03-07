@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EricaStore.Models.StudentModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped">
+
+
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.ID</td>
+            <td>@student.FirstName</td>
+            <td>@student.LastName</td>
+            <td>@student.FavoriteFood</td>
+
+        </tr>
+    }
+</table>
