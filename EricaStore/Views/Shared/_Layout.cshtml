@@ -1,42 +1,71 @@
 ﻿<!DOCTYPE html>
-<html>
+<html >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Philosopher" rel="stylesheet">
+
+   <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+   
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+
+
+
+
+<body class="font">
+    <div class="container-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top ">
+           
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <img src="~/Content/Images/small-logo.png"/> 
+                @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
+            </div>
+            <div class="navbar-right">
+                <button class="btn btn-default" data-toggle="popover" title="Cart" data-content="Cart Data Here" data-placement="bottom">
+                    <span style="font-size:1em" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    @*<span class="badge">{{cart.length}}</span>*@
+                </button>
             </div>
             <div class="navbar-collapse collapse">
+
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
                 </ul>
             </div>
+            
+
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid" style="padding: 0px; margin: 0px;">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="footerstyle">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
     @RenderSection("scripts", required: false)
+   
 </body>
 </html>

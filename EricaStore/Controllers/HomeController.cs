@@ -19,12 +19,31 @@ namespace EricaStore.Controllers
 
             return View();
         }
-
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            //TODO: send message to customer service
+            ViewBag.Message = "Questions? Comments? Send us a message!";
 
             return View();
         }
+
+
+
+        public ActionResult MembershipInfo()
+        {
+            ViewBag.Message = "Why A Membership?";
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Contact(string message)
+        {
+            ViewBag.Message = "Thanks, we got your message and someone will be contacting you shortly.";
+            return View();
+        }
+
+        
+       
     }
 }

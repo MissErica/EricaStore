@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EricaStore.Models.ProductsModel>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Pick Your Freshness: </h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-xs-4">
+            <div >
+                <div class="well">
+                    <h2>@product.ProductName</h2>
+                    <h4>@product.Category</h4>
+                    <p>@product.Ingredients</p>
+                    @Html.ActionLink("Description", "Show", new {id = product.Id}, new {@class = "btn btn-primary"})
+                </div>
+            </div>
+        </div>
+
+        
+    }
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

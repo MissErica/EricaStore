@@ -9,7 +9,8 @@ namespace EricaStore.Controllers
 {
     public class StudentController : Controller
     {
-        private List<StudentModel> students = new List<StudentModel>();
+       private static List<StudentModel> students = new List<StudentModel>();
+
         // GET: Student
         public ActionResult Index(string id)
         {
@@ -24,5 +25,23 @@ namespace EricaStore.Controllers
             }
             return View(students);
         }
+        [HttpPost]
+        public ActionResult Edit(StudentModel model)
+        {
+            var student = students.FirstOrDefault(x => x.ID == model.ID);
+            student.FirstName = model.FirstName;
+            student.LastName = model.LastName;
+            student.FavoriteFood = model.FavoriteFood;
+
+            return RedirectToAction("Index", new { edited = true });
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            return View(students.First(x => x.ID == id));
+        }
+
+
     }
 } 

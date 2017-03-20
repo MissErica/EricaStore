@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .chalkboard{
+                background-image: url(iljb_slider_chalkboard_03.png);
+                background-size: cover;
+                height: 800px;
+            }
+            .fadein{
+                position: absolute;
+                animation: fadeinanim 5s infinite;
+            }
+            
+            @keyframes fadeinanim {
+                0% { opacity: 0; }
+                50% { opacity: 1; }
+                100%   { opacity: 0; }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="chalkboard">
+            <img class="fadein" src="iljb_slider_chalk3_01.png">
+            <img src="iljb_home_bottles.png">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model EricaStore.Models.ProductsModel
+
+@{
+    ViewBag.Title = "Product";
+
+}
+
+<h2>@Model.ProductName</h2>
+
+<div class="row">
+    
+    <div class="col-md-4">
+        @foreach (var img in Model.Image)
+        {
+            <img src="@img" style="max-width:100%" />
+        }
+    </div>
+
+    <div class="col-md-4">
+        <div class="well">
+            <h2>@Model.ProductName</h2>
+            <h4>@Model.Category</h4>
+            <p>@Model.Ingredients</p>
+            <p>@Model.Price</p>
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(x => x.ProductName)
+                @Html.HiddenFor(x => x.Id)
+                @Html.HiddenFor(x => x.Price)
+                @Html.HiddenFor(x => x.Category)
+                @Html.HiddenFor(x => x.Ingredients)
+                <input type="submit" value="add to cart" class="btn btn-primary" />
+
+                @Html.ActionLink("Back to Products", "Index", "Products", null, new { @class = "btn btn-default" })
+                //TO DO: make and "add to wishlist"
+            }
+        </div>
+    </div>
+  
+    <div class="col-md-4">
+        
+            <p>@Model.Description</p>
+    </div>
+  
+</div>
+
+
+
+
+@*<table class="table table-striped">
+
+
+        <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+    @foreach (var item in Model)
+    {
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.ProductName</td>
+                <td>@item.Category</td>
+                <td>@item.Price</td>
+
+            </tr>
+        }
+
+
+    </table>*@

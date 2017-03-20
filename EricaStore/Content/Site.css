@@ -1,24 +1,80 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
-}
+    font-family: 'Philosopher', sans-serif;
+}*/
+
+/*.thumbnail a > img {
+    /* margin-right: auto; */
+    /* margin-left: auto; */
+    height: 220px;
+}*/
+
+
+
+
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
+/*.body-content {
+    padding-left: 55px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+/*.dl-horizontal dt {
     white-space: normal;
-}
+}*/
 
-/* Set width on the form input elements since they're 100% wide by default */
+/*Set width on the form input elements since they're 100% wide by default*/
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.jumbotron {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    margin-left:0px;
+    padding-bottom: 200px;
+    padding-top: 150px;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: hidden;
+    background: url("Images/grapefruit.jpeg");
+    background-size: cover;
+}
+
+
+.font {
+    font-family: 'Philosopher', sans-serif;
+        background-color:#CFB590;
+
+}
+
+.space {
+    padding-top: 35px;
+}
+
+.footerstyle {
+    height: 200px;
+    width: 100%;
+    background-color: #49281F;
+    color: green;
+}
+
+.navstyle {
+    font-family: 'Grand Hotel', cursive;
+    font-size: 26px;
+}
+
+body{
+    background-color:#CFB590;
 }

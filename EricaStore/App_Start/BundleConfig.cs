@@ -23,9 +23,24 @@ namespace EricaStore
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css",
+                      "~/Content/bootstrap-theme.css",
+                       "~/Content/bootstrap.css",
+                      "~/Content/ui-bootstrap-csp.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+               "~/Scripts/angular.js",
+               "~/Scripts/modalapp.js",
+               "~/Scripts/angular-route.js",
+               "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+               ));
+
+            //bundles.UseCdn = true;
+            //var cdnPath = "https://fonts.googleapis.com/css?family=Philosopher";
+            //bundles.Add(new StyleBundle("~philosopherFont", cdnPath));
         }
     }
 }
