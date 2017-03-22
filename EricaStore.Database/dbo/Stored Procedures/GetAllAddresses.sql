@@ -1,3 +1,0 @@
-﻿CREATE PROCEDURE GetAllAddresses
-AS
-	SELECT * FROM Addresses

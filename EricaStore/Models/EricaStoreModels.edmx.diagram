@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24b67aa0267b4604bfc06a5ddcbcf02f" Name="Diagram1">
+        <EntityTypeShape EntityType="EricaStoreModel.Address" Width="1.5" PointX="3.75" PointY="13.125" />
+        <EntityTypeShape EntityType="EricaStoreModel.MembershipType" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EricaStoreModel.Order" Width="1.5" PointX="6" PointY="13" />
+        <EntityTypeShape EntityType="EricaStoreModel.OrderProduct" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="EricaStoreModel.Product" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="EricaStoreModel.ProductImage" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="EricaStoreModel.Review" Width="1.5" PointX="5.25" PointY="9" />
+        <AssociationConnector Association="EricaStoreModel.FK_Order_BillingAddress" />
+        <AssociationConnector Association="EricaStoreModel.FK_Order_DeliveryAddress" />
+        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Order" />
+        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Product" />
+        <AssociationConnector Association="EricaStoreModel.FK_ProductImage_Product" />
+        <AssociationConnector Association="EricaStoreModel.FK_Review_Product" />
+        <AssociationConnector Association="EricaStoreModel.MembershipTypeProduct" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetRole" Width="1.5" PointX="8.5" PointY="9.5" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserClaim" Width="1.5" PointX="13" PointY="10.625" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserLogin" Width="1.5" PointX="13" PointY="8" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUser" Width="1.5" PointX="10.75" PointY="8.375" />
+        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EricaStoreModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

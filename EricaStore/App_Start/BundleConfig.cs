@@ -25,10 +25,11 @@ namespace EricaStore
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/Site.css",
+                      
                       "~/Content/bootstrap-theme.css",
                        "~/Content/bootstrap.css",
-                      "~/Content/ui-bootstrap-csp.css"
+                      "~/Content/ui-bootstrap-csp.css",
+                      "~/Content/Site.css"
                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
@@ -38,9 +39,7 @@ namespace EricaStore
                "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
                ));
 
-            //bundles.UseCdn = true;
-            //var cdnPath = "https://fonts.googleapis.com/css?family=Philosopher";
-            //bundles.Add(new StyleBundle("~philosopherFont", cdnPath));
+            
         }
     }
 }

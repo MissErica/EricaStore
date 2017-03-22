@@ -14,7 +14,7 @@ namespace EricaStore.Models
 
         public string ProductName { get; set; }
 
-        public string[] Image { get; set; }
+        public IEnumerable<string> Image { get; set; }
 
        
         public string Category { get; set; }
