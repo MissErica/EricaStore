@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -26,7 +27,7 @@ namespace EricaStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public async Task<ActionResult> Register(RegisterModel model)
         {
             if(ModelState.IsValid)
             {
@@ -41,15 +42,45 @@ namespace EricaStore.Controllers
                     var user = new User()
                     {
                         UserName = model.EmailAddress,
-                        EmailConfirmed = true,
                         Email = model.EmailAddress
                     };
 
                     IdentityResult result = manager.Create(user, model.Password);
+                    User u = manager.FindByName(model.EmailAddress);
+                    
+                   string confirmationToken = manager.GenerateEmailConfirmationToken(u.Id);
+
+
+
+                    string sendGridApiKey = System.Configuration.ConfigurationManager.AppSettings["SendGrid.ApiKey"];
+
+                    SendGrid.SendGridClient client = new SendGrid.SendGridClient(sendGridApiKey);
+                    SendGrid.Helpers.Mail.SendGridMessage message = new SendGrid.Helpers.Mail.SendGridMessage();
+                    //TODO: string.Format("Recepit for order {0}, ord.Id);
+                    message.Subject = "Please confirm your account";
+                    message.From = new SendGrid.Helpers.Mail.EmailAddress("admin@freshstartjuiceco.com", "Fresh Start Juice Co");
+                    message.AddTo(new SendGrid.Helpers.Mail.EmailAddress(model.EmailAddress));
+                    SendGrid.Helpers.Mail.Content contents = new SendGrid.Helpers.Mail.Content("text/html", string.Format("<a href=\"{0}\"Confirm Account</a>", Request.Url.GetLeftPart(UriPartial.Authority) + "Account/Confirm/" + confirmationToken));
+
+                    message.AddContent(contents.Type, contents.Type);
+
+                    SendGrid.Response response = await client.SendEmailAsync(message);
+
+
+
+
+
+
+
+
+
+
+
+
                     if (result.Succeeded)
                     {
                         FormsAuthentication.SetAuthCookie(model.EmailAddress, true);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ConfirmSent");
 
                     }
                     else
@@ -63,11 +94,30 @@ namespace EricaStore.Controllers
             return View(model);
         }
 
+        public ActionResult ConfirmSent()
+        {
+            return View();
+        }
+
+        public ActionResult Confirm(string Id)
+        {
+            return View();
+        }
+
+
+
        public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
+
+
+
 
         public ActionResult Login()
         {

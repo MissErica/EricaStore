@@ -16,6 +16,8 @@ namespace EricaStore.Models
         [Required]
         [MinLength(7)]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }
 

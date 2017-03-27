@@ -16,5 +16,11 @@ namespace EricaStore.Models
         [Required]
         [MinLength(7)]
         public string Password { get; set; }
+
+        [Compare("NewPassword", ErrorMessage ="Password doesn't match")]
+        public string ConfirmPassWord { get; set; }
+
+
+
     }
 }

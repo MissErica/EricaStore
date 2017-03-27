@@ -34,5 +34,6 @@ namespace EricaStore.Models
         public virtual Address Address1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        public string PurchaseEmail { get; internal set; }
     }
 }

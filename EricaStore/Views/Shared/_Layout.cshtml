@@ -19,7 +19,7 @@
 
 
 <body class="font">
-    <div class="container-fluid">
+    
         <div class="navbar navbar-inverse navbar-fixed-top ">
 
 
@@ -32,28 +32,30 @@
                 <img src="~/Content/Images/small-logo.png" />
                 @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
             </div>
-            <div class="navbar-right">
+          <!--  <div class="navbar-right">
                 <button class="btn btn-default" data-toggle="popover" title="Cart" data-content="Cart Data Here" data-placement="bottom">
                     <span style="font-size:1em" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     @*<span class="badge">{{cart.length}}</span>*@
-                </button>
-            </div>
+                @*</button>*@
+            </div>-->
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
                     <li>@Html.ActionLink("Products", "Index", "Products")</li>
                     <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
                 </ul>
             </div>
 
 
         </div>
-    </div>
 
+
+
+    
     @if (User.Identity.IsAuthenticated)
     {
         <li>@Html.ActionLink("Logout as" + User.Identity.Name, "Logout", "Account")</li>
@@ -63,15 +65,23 @@
         <li>@Html.ActionLink("Login", "Login", "Account")</li>
     }
 
-    <div class="container-fluid" style="padding: 0px; padding-top: 80px; margin: 0px;">
-        @RenderBody()
+
+
+    @RenderBody()
+
+      
         <hr />
         <div class="footerstyle">
             <footer>
+                <ul>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
+                </ul>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
             </footer>
         </div>
-    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

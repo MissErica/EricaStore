@@ -20,7 +20,7 @@ namespace EricaStore.Controllers
             {
                 var Products = entities.Products.Select(x => new ProductsModel
                 {
-                    Category = "",
+                    Category = x.Category,
                     Description = x.Description,
                     Id = x.ID,
                     Ingredients = "",
@@ -44,11 +44,11 @@ namespace EricaStore.Controllers
                 if (product != null)
                 {
                     ProductsModel model = new ProductsModel();
-                    model.Category = "";
+                    model.Category = product.Category;
                     model.Description = product.Description;
                     model.Id = product.ID;
                     model.Image = product.ProductImages.Select(x => x.Path);
-                    model.Ingredients = "";
+                    model.Ingredients = product.Ingredients;
                     model.Price = product.Price;
                     model.ProductName = product.Name;
                     return View(model);

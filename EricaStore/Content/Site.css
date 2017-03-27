@@ -7,7 +7,7 @@
 /*.thumbnail a > img {
     /* margin-right: auto; */
     /* margin-left: auto; */
-    height: 220px;
+    /*height: 220px;*/
 }*/
 
 
@@ -38,7 +38,25 @@ textarea {
     margin-top: 20px;
 }
 
-.jumbotron {
+.pageHero-container {
+   
+    position:relative;
+    width:100%;
+    margin-bottom:20px;
+}
+
+.textoverhero {
+    position:relative;
+    bottom:30%;
+    width: 70%;
+    margin-left:20px;
+    padding:10px;
+    background:rgba(255,255,255, 0.7) ;
+
+}
+
+
+/*.jumbotron {
     width: 100%;
     position: relative;
     height: 100%;
@@ -47,15 +65,15 @@ textarea {
     padding-top: 150px;
     padding-left: 0px;
     padding-right: 0px;
-    overflow: hidden;
-    background: url("Images/grapefruit.jpeg");
+    overflow: ;
+    background: url("Images/newgrapefruit.jpg");
     background-size: cover;
-}
+}*/
 
 
 .font {
     font-family: 'Philosopher', sans-serif;
-        background-color:#CFB590;
+        /*background-color:#CFB590;*/
 
 }
 
@@ -66,7 +84,7 @@ textarea {
 .footerstyle {
     height: 200px;
     width: 100%;
-    background-color: #49281F;
+   // background-color: #49281F;
     color: green;
 }
 
@@ -75,6 +93,18 @@ textarea {
     font-size: 26px;
 }
 
-body{
-    background-color:#CFB590;
-}
+
+
+
+/*@media (max-width:480px) {
+
+    .pageHero-container .textoverhero h1{
+        font-size: 24em;
+
+
+
+    }
+
+
+
+}*/

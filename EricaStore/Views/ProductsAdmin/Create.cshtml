@@ -4,9 +4,13 @@
     ViewBag.Title = "Create";
 }
 
+
+
+
+
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "ProductsAdmin", FormMethod.Post, new { enctype = "multipart/form-data"))
 {
     @Html.AntiForgeryToken()
     
@@ -53,6 +57,15 @@
                 @Html.ValidationMessageFor(model => model.Modified, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            <label for= "image" class="control-label col-md-2"> Image </label>
+            <div class="col-md-10">
+                <input type="file" id="image" name="image" class="form-control"/>
+            </div>
+
+        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

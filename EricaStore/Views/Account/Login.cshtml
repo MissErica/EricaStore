@@ -1,0 +1,47 @@
+﻿@model EricaStore.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@if(TempData["AccountConfirmed"] != null)
+{
+
+    <div class="alert alert-success"><p>Login Below</p></div>
+}
+<h2>Log In to Begin</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(x => x.EmailAddress)
+    @Html.TextBoxFor(x => x.EmailAddress)
+    @Html.ValidationMessageFor(x => x.EmailAddress)
+
+    @Html.LabelFor(x => x.Password)
+    @Html.TextBoxFor(x => x.Password)
+    @Html.ValidationMessageFor(x => x.Password)
+
+    @Html.CheckBoxFor(x => x.RememberMe)
+        <label for="RememberMe">Keep Me Signed In</label>
+        <a href="/Account/ForgotPassword">Forgot Password?</a>
+
+
+
+    <input type="submit" value="Login" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

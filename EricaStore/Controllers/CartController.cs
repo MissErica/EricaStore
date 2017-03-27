@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EricaStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EricaStore.Models;
 
 namespace EricaStore.Controllers
 {
@@ -14,39 +14,71 @@ namespace EricaStore.Controllers
         public ActionResult Index()
         {
             CartModel model = new CartModel();
-            List<ProductsModel> cart = Session["Cart"] as List<ProductsModel>;
-
-            if (cart == null)
+            using (EricaStoreEntities1 entities = new EricaStoreEntities1())
             {
-                cart =new List<ProductsModel>();
-            }
-
-            model.Items = new CartItemModel[cart.Count];
-            model.Subtotal = 0;
-
-            for (int i = 0; i < cart.Count; i++)
-            {
-                model.Items[i] = new CartItemModel
+                Order ord = null;
+                if (User.Identity.IsAuthenticated)
                 {
-                    Products = cart[i],
-                    Quantity = 1
-                };
-                model.Subtotal += (model.Items[i].Products.Price) * (model.Items[i].Quantity ?? 0);
+                    AspNetUser currentUser = entities.AspNetUsers.Single(x => x.UserName == User.Identity.Name);
+                    // ord = currentUser.Orders.FirstOrDefault(x => x.Completed == null);
+                    if (ord == null)
+                    {
+                        ord = new Order();
+                        ord.ConfirmationNumber = Guid.NewGuid();
+                        // currentUser.Orders.Add(ord);
+                        entities.SaveChanges();
+                    }
+                }
+                else
+                {
+                    if (Request.Cookies.AllKeys.Contains("ConfirmationNumber"))
+                    {
+                        Guid ConfirmationNumber = Guid.Parse(Request.Cookies["ConfirmationNumber"].Value);
+                        ord = entities.Orders.FirstOrDefault(x => x.Completed == null && x.ConfirmationNumber == ConfirmationNumber);
+                    }
+                    if (ord == null)
+                    {
+                        ord = new Order();
+                        ord.ConfirmationNumber = Guid.NewGuid();
+                        entities.Orders.Add(ord);
+                        Response.Cookies.Add(new HttpCookie("ConfirmationNumber", ord.ConfirmationNumber.ToString()));
+                        entities.SaveChanges();
+                    }
+                }
+
+                //model.Items = ord.OrderProducts.Select(x => new CartItemModel
+                //{
+                //    Product = new ProductsModel
+                //    {
+                //        Description = x.Product.Description,
+                //        ID = x.Product.ID,
+                //        Name = x.Product.Name,
+                //        Price = x.Product.Price,
+                //        Images = x.Product.ProductImages.Select(y => y.Path)
+
+                //    },
+                //    Quantity = x.Quantity
+                //}).ToArray();
+                //    model.Subtotal = ord.OrderProducts.Sum(x => x.Product.Price * x.Quantity)
+                //            ViewBag.PageGenerationTime = DateTime.UtcNow;
+                return View(model);
 
             }
 
 
-            ViewBag.PageGenerationTime = DateTime.UtcNow;
-           
-            return View(model);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult Checkout()
-        {
-            return ViewBag.Message("You must be logged in!");
-           RedirectToAction("MembershipInfo");
         }
     }
 }
+
+           
+
+        
+
+       // [Authorize]
+      //  [HttpPost]
+        //public ActionResult Checkout()
+        //{
+        //    return ViewBag.Message("You must be logged in!");
+        //   RedirectToAction("");
+        //}
+    
