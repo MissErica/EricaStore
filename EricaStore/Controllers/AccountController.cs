@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -47,8 +48,24 @@ namespace EricaStore.Controllers
 
                     IdentityResult result = manager.Create(user, model.Password);
                     User u = manager.FindByName(model.EmailAddress);
-                    
-                   string confirmationToken = manager.GenerateEmailConfirmationToken(u.Id);
+
+                    //create a customer record in braintree
+
+                    string merchantId = ConfigurationManager.AppSettings["Braintree.MerchantID"];
+                    string publicKey = ConfigurationManager.AppSettings["Braintree.PublicKey"];
+                    string privateKey = ConfigurationManager.AppSettings["Braintree.PrivateKey"];
+                    string environment = ConfigurationManager.AppSettings["Braintree.Environment"];
+
+                    Braintree.BraintreeGateway braintree = new Braintree.BraintreeGateway(environment, merchantId, publicKey, privateKey);
+
+                    Braintree.CustomerRequest customer = new Braintree.CustomerRequest();
+                    customer.CustomerId = u.Id;
+                    customer.Email = u.Email;
+
+                    var r = await braintree.Customer.CreateAsync(customer);
+
+
+                    string confirmationToken = manager.GenerateEmailConfirmationToken(u.Id);
 
 
 

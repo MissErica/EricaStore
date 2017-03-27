@@ -12,7 +12,7 @@ namespace EricaStore.Controllers
 {
     public class ReviewsController : Controller
     {
-        private EricaStoreEntities1 db = new EricaStoreEntities1();
+        private EricaStoreEntities db = new EricaStoreEntities();
 
         // GET: Reviews
         public ActionResult Index()

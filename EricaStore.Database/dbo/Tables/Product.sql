@@ -6,7 +6,9 @@
 	[Description] NTEXT NULL,
 	[Created] DATETIME NULL DEFAULT GetUtcDate(), 
 	[Modified] DATETIME NULL DEFAULT GetUtcDate(), 
-	CONSTRAINT [PK_Product] PRIMARY KEY ([ID]),
+	[Category] NVARCHAR(100) NULL, 
+    [Ingredients] NVARCHAR(MAX) NULL, 
+    CONSTRAINT [PK_Product] PRIMARY KEY ([ID]),
 	
 
 

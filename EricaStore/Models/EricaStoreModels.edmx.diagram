@@ -4,28 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24b67aa0267b4604bfc06a5ddcbcf02f" Name="Diagram1" ZoomLevel="108">
-        <EntityTypeShape EntityType="EricaStoreModel.Address" Width="1.5" PointX="3.75" PointY="13.125" />
-        <EntityTypeShape EntityType="EricaStoreModel.MembershipType" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="EricaStoreModel.Order" Width="1.5" PointX="6" PointY="13" />
-        <EntityTypeShape EntityType="EricaStoreModel.OrderProduct" Width="1.5" PointX="8.25" PointY="4.5" />
-        <EntityTypeShape EntityType="EricaStoreModel.Product" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="EricaStoreModel.ProductImage" Width="1.5" PointX="5.25" PointY="2.875" />
-        <EntityTypeShape EntityType="EricaStoreModel.Review" Width="1.5" PointX="5.25" PointY="9" />
-        <AssociationConnector Association="EricaStoreModel.FK_Order_BillingAddress" />
-        <AssociationConnector Association="EricaStoreModel.FK_Order_DeliveryAddress" />
-        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Order" />
-        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Product" />
-        <AssociationConnector Association="EricaStoreModel.FK_ProductImage_Product" />
-        <AssociationConnector Association="EricaStoreModel.FK_Review_Product" />
-        <AssociationConnector Association="EricaStoreModel.MembershipTypeProduct" />
-        <EntityTypeShape EntityType="EricaStoreModel.AspNetRole" Width="1.5" PointX="8.5" PointY="9.5" />
-        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserClaim" Width="1.5" PointX="13" PointY="10.625" />
-        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserLogin" Width="1.5" PointX="13" PointY="8" />
-        <EntityTypeShape EntityType="EricaStoreModel.AspNetUser" Width="1.5" PointX="10.75" PointY="8.375" />
-        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="EricaStoreModel.AspNetUserRoles" />
+      <Diagram DiagramId="9000cec8f48940ac8390d2c98347737a" Name="Diagram1">
+        <EntityTypeShape EntityType="EricaStoreModel.Address" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.AspNetUser" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.MembershipType" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.Order" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.OrderProduct" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.Product" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.ProductImage" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EricaStoreModel.Review" Width="1.5" PointX="9.75" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="EricaStoreModel.FK_Address_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_Order_BillingAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_Order_DeliveryAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_Order_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_ProductImage_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.FK_Review_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="EricaStoreModel.MembershipTypeProduct" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

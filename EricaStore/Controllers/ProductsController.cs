@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EricaStore.Models;
+using System;
 
 namespace EricaStore.Controllers
 {
@@ -16,14 +17,14 @@ namespace EricaStore.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            using (EricaStoreEntities1 entities = new EricaStoreEntities1())
+            using (EricaStoreEntities entities = new EricaStoreEntities())
             {
                 var Products = entities.Products.Select(x => new ProductsModel
                 {
                     Category = x.Category,
                     Description = x.Description,
-                    Id = x.ID,
-                    Ingredients = "",
+                    ID = x.ID,
+                    Ingredients = x.Ingredients,
                     Price = x.Price,
                     ProductName = x.Name,
                     Image = x.ProductImages.Select(y => y.Path)
@@ -38,7 +39,7 @@ namespace EricaStore.Controllers
         public ActionResult Show(int? id)
         {
 
-            using (EricaStoreEntities1 entities = new EricaStoreEntities1())
+            using (EricaStoreEntities entities = new EricaStoreEntities())
             {
                 var product = entities.Products.Find(id);
                 if (product != null)
@@ -46,7 +47,7 @@ namespace EricaStore.Controllers
                     ProductsModel model = new ProductsModel();
                     model.Category = product.Category;
                     model.Description = product.Description;
-                    model.Id = product.ID;
+                    model.ID = product.ID;
                     model.Image = product.ProductImages.Select(x => x.Path);
                     model.Ingredients = product.Ingredients;
                     model.Price = product.Price;
@@ -64,28 +65,46 @@ namespace EricaStore.Controllers
         [HttpPost]
         public ActionResult Show(ProductsModel model)
         {
-
-
-            List<ProductsModel> cart = this.Session["Cart"] as List<ProductsModel>;
-            if (cart == null)
+            using (EricaStoreEntities entities = new EricaStoreEntities())
             {
-                cart = new List<ProductsModel>();
+                Order ord = null;
+                if (User.Identity.IsAuthenticated)
+                {
+                    AspNetUser currentUser = entities.AspNetUsers.Single(x => x.UserName == User.Identity.Name);
+                    ord = currentUser.Orders.FirstOrDefault(x => x.Completed == null);
+                    if (ord == null)
+                    {
+                        ord = new Order();
+                        ord.ConfirmationNumber = Guid.NewGuid();
+                        currentUser.Orders.Add(ord);
+
+                    }
+                }
+                else
+                {
+                    if (Request.Cookies.AllKeys.Contains("ConfirmationNumber"))
+                    {
+                        Guid ConfirmationNumber = Guid.Parse(Request.Cookies["ConfirmationNumber"].Value);
+                        ord = entities.Orders.FirstOrDefault(x => x.Completed == null && x.ConfirmationNumber == ConfirmationNumber);
+                    }
+                    if (ord == null)
+                    {
+                        ord = new Order();
+                        ord.ConfirmationNumber = Guid.NewGuid();
+                        entities.Orders.Add(ord);
+                        Response.Cookies.Add(new HttpCookie("ConfirmationNumber", ord.ConfirmationNumber.ToString()));
+
+                    }
+                }
+
+                ord.OrderProducts.Add(new OrderProduct { ProductID = model.ID ?? 0, Quantity = 1 });
+                entities.SaveChanges();
+                TempData.Add("AddedToCart", true);
+
+
+                return RedirectToAction("Index", "Cart");
+
             }
-
-            cart.Add(model);
-
-            this.Session.Add("Cart", cart );
-
-            TempData.Add("AddedToCart", true);
-
-
-            //Response.Cookies.Add(new HttpCookie("ProductId", model.Id.Value.ToString()));
-            //Response.Cookies.Add(new HttpCookie("ProductName", model.ProductName));
-            //Response.Cookies.Add(new HttpCookie("ProductPrice", model.Price.ToString()));
-
-
-            return RedirectToAction("Index", "Cart");
-
         }
     }
 

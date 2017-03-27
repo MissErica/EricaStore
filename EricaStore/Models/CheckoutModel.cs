@@ -8,6 +8,13 @@ namespace EricaStore.Models
 {
     public class CheckoutModel
     {
+        [Required]
+        public DateTime? CreditCardExpiration { get; set; }
+        [Required]
+        [CreditCard]
+        public string CreditCardNumber { get; set; }
+        public string CreditCardName { get; set; }
+        public string CreditCardVerificationValue { get; set; }
 
         [Required]
         [Display(Name = "Name")]

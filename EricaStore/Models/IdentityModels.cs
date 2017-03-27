@@ -8,7 +8,8 @@ namespace EricaStore.Models
 {
     public class IdentityModels : IdentityDbContext<User>
     {
-        public IdentityModels() : base("name=EricaStore")
+        public IdentityModels() 
+            : base("name=EricaStore")
         {
 
         }

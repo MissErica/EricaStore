@@ -7,7 +7,7 @@ namespace EricaStore.Models
 {
     public class CartItemModel
     {
-        public ProductsModel Products { get; set; }
+        public ProductsModel Product { get; set; }
         
         public int? Quantity { get; set; }
     }

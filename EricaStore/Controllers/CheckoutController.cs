@@ -1,6 +1,7 @@
 ﻿using EricaStore.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,18 +46,18 @@ namespace EricaStore.Controllers
 
                 await client.SendEmailAsync(message);
 
-                using (Models.EricaStoreEntities1 entities = new EricaStoreEntities1())
+                using (Models.EricaStoreEntities entities = new EricaStoreEntities())
                 {
                     Order ord = null;
                     if (User.Identity.IsAuthenticated)
                     {
                         AspNetUser currentUser = entities.AspNetUsers.Single(x => x.UserName == User.Identity.Name);
-                        //ord = currentUser.Order.FirstOrDefault(x => x.Completed == null);
+                        ord = currentUser.Orders.FirstOrDefault(x => x.Completed == null);
                         if (ord == null)
                         {
                             ord = new Order();
                             ord.ConfirmationNumber = Guid.NewGuid();
-                           // currentUser.Order.Add(ord);
+                           currentUser.Orders.Add(ord);
                             entities.SaveChanges();
                         }
                     }
@@ -81,7 +82,7 @@ namespace EricaStore.Controllers
                         return RedirectToAction("Index", "Cart");
                     }
 
-                    ord.EmailAddress = User.Identity.Name;
+                    ord.PurchaseEmailAddress = User.Identity.Name;
                     Address newShippingAddress = new Address();
                     newShippingAddress.Address1 = model.ShippingAddress1;
                     newShippingAddress.Address2 = model.ShippingAddress2;
@@ -94,6 +95,44 @@ namespace EricaStore.Controllers
 
                     //entities.sp_CompleteOrder(ord.Id);
 
+                    string merchantId = ConfigurationManager.AppSettings["Braintree.MerchantID"];
+                    string publicKey = ConfigurationManager.AppSettings["Braintree.PublicKey"];
+                    string privateKey = ConfigurationManager.AppSettings["Braintree.PrivateKey"];
+                    string environment = ConfigurationManager.AppSettings["Braintree.Environment"];
+
+
+                    Braintree.BraintreeGateway braintree = new Braintree.BraintreeGateway(environment,merchantId,publicKey,privateKey);
+
+                    Braintree.TransactionRequest newTransaction = new Braintree.TransactionRequest();
+                    newTransaction.Amount = ord.OrderProducts.Sum(x => x.Quantity * x.Product.Price);
+
+                    Braintree.TransactionCreditCardRequest creditCard = new Braintree.TransactionCreditCardRequest();
+                    creditCard.CardholderName = model.CreditCardName;
+                    creditCard.CVV = model.CreditCardVerificationValue; ;
+                    creditCard.ExpirationMonth = model.CreditCardExpiration.Value.Month.ToString().PadLeft(2,'0'); //always needs to be two characters
+                    creditCard.ExpirationYear = model.CreditCardExpiration.Value.Year.ToString();
+                    creditCard.Number = model.CreditCardNumber;
+
+                    newTransaction.CreditCard = creditCard;
+
+                    //if user is logged in, associate this transaction with their account
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        Braintree.CustomerSearchRequest search = new Braintree.CustomerSearchRequest();
+                        search.Email.Is(User.Identity.Name);
+                        var customers = braintree.Customer.Search(search);
+                        newTransaction.CustomerId = customers.FirstItem.Id;
+
+                    }
+
+                    Braintree.Result<Braintree.Transaction> result = await braintree.Transaction.SaleAsync(newTransaction);
+
+                    if (!result.IsSuccess())
+                    {
+                        ModelState.AddModelError("CreditCard", "Could not authorize payment");
+                        return View(model);
+                    }
                 
 
                 }

@@ -19,10 +19,10 @@
     @foreach (var item in Model.Items)
     {
         <tr>
-            <td>@item.Products.ProductName</td>
+            <td>@item.Product.ProductName</td>
             <td>@item.Quantity</td>
             <td><button disabled class="btn btn-default">Remove</button></td>
-            <td>@item.Products.Price.ToString("C")</td>
+            <td>@item.Product.Price.ToString("C")</td>
         </tr>
     }
     </tbody>

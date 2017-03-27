@@ -7,12 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EricaStore.Models;
+using System.IO;
+using System.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+
 
 namespace EricaStore.Controllers
 {
     public class ProductsAdminController : Controller
     {
-        private EricaStoreEntities1 db = new EricaStoreEntities1();
+        private EricaStoreEntities db = new EricaStoreEntities();
 
         // GET: ProductsAdmin
         public ActionResult Index()
@@ -35,6 +40,8 @@ namespace EricaStore.Controllers
             return View(product);
         }
 
+       
+
         // GET: ProductsAdmin/Create
         public ActionResult Create()
         {
@@ -46,10 +53,33 @@ namespace EricaStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Price,Description,Created,Modified")] Product product)
+        public ActionResult Create([Bind(Include = "ID,Name,Price,Description,Ingredients,Created,Modified")] Product product, HttpPostedFile image)
         {
             if (ModelState.IsValid)
             {
+                product.Created = DateTime.UtcNow;
+                product.Modified = DateTime.UtcNow;
+
+                string fileName = image.FileName;
+
+                image.SaveAs(Server.MapPath("/Content/Images/" + fileName));
+                fileName = "/Content/Images/" + fileName;
+                if (db.ProductImages.Any(x => x.ProductID == product.ID))
+                {
+                    ProductImage pi = db.ProductImages.FirstOrDefault(x => x.ProductID == product.ID);
+                    pi.Path = fileName;
+                    pi.Modified = DateTime.UtcNow;
+                }
+                else
+                {
+                    product.ProductImages.Add(new ProductImage
+                    {
+                        Path = fileName,
+                        Created = DateTime.UtcNow,
+                        Modified = DateTime.UtcNow
+                    });
+                }
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -57,6 +87,22 @@ namespace EricaStore.Controllers
 
             return View(product);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: ProductsAdmin/Edit/5
         public ActionResult Edit(int? id)
@@ -73,16 +119,46 @@ namespace EricaStore.Controllers
             return View(product);
         }
 
+
+
+
+
+
+
+
+
+
         // POST: ProductsAdmin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Price,Description,Created,Modified")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,Name,Price,Description,Created,Modified")] Product product, HttpPostedFile image)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
+
+                string fileName = image.FileName;
+
+                image.SaveAs(Server.MapPath("/Content/Images/" + fileName));
+                fileName = "/Content/Images/" + fileName;
+                if (db.ProductImages.Any(x => x.ProductID == product.ID))
+                {
+                    ProductImage pi = db.ProductImages.FirstOrDefault(x => x.ProductID == product.ID);
+                    pi.Path = fileName;
+                    pi.Modified = DateTime.UtcNow;
+                }
+                else
+                {
+                    product.ProductImages.Add(new ProductImage
+                    {
+                        Path = fileName,
+                        Created = DateTime.UtcNow,
+                        Modified = DateTime.UtcNow
+                    });
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

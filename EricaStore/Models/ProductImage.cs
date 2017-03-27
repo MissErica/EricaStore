@@ -18,7 +18,7 @@ namespace EricaStore.Models
         public int ProductID { get; set; }
         public string Path { get; set; }
         public string AltText { get; set; }
-        public Nullable<System.DateTime> Creaated { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }
     
         public virtual Product Product { get; set; }

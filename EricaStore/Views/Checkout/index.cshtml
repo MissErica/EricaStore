@@ -107,7 +107,30 @@
 
 
 
+<div class="form-group">
+    @Html.LabelFor(x => x.CreditCardNumber, new { @class = "control-label" })
+    @Html.TextBoxFor(x => x.CreditCardNumber, new { @class = "form-control", placeholder = "Credit Card Number" })
+    @Html.ValidationMessageFor(x => x.CreditCardNumber)
+</div>
 
+<div class="form-group">
+    @Html.LabelFor(x => x.CreditCardName, new { @class = "control-label" })
+    @Html.TextBoxFor(x => x.CreditCardName, new { @class = "form-control", placeholder = "Name On Card" })
+    @Html.ValidationMessageFor(x => x.CreditCardName)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.CreditCardVerificationValue, new { @class = "control-label" })
+    @Html.TextBoxFor(x => x.CreditCardVerificationValue, new { @class = "form-control", placeholder = "CVV" })
+    @Html.ValidationMessageFor(x => x.CreditCardVerificationValue)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.CreditCardExpiration, new { @class = "control-label" })
+    <input type="date" name="CreditCardExpiration" class="form-control" />
+    @Html.TextBoxFor(x => x.CreditCardExpiration, new { @class = "form-control", placeholder = "Email" })
+    @Html.ValidationMessageFor(x => x.CreditCardExpiration)
+</div>
 
 
 

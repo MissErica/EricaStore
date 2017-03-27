@@ -2,8 +2,8 @@
 (
 	[ID] INT IDENTITY(1,1) NOT NULL, 
     [OrderDate] TIMESTAMP NOT NULL , 
-    [DeliveryAddressID] INT NOT NULL, 
-    [BillingAddressID] INT NOT NULL, 
+    [DeliveryAddressID] INT NULL, 
+    [BillingAddressID] INT NULL, 
 	[PurchaseEmailAddress] NVARCHAR(100) NULL,
     [ConfirmationNumber] UNIQUEIDENTIFIER NOT NULL DEFAULT NewID(),
 	[Completed] DATETIME NULL, 
