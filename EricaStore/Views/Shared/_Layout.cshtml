@@ -1,53 +1,54 @@
 ﻿<!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title Fresh Start Juice Co. </title>
     <link href="https://fonts.googleapis.com/css?family=Philosopher" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Philosopher" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 
     @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
-    
-   
+
+
 </head>
 
 
 
 
 <body class="font">
-    
-        <div class="navbar navbar-inverse navbar-fixed-top " style="padding-top:5px;padding-bottom:5px;">
+
+    <div class="navbar navbar-inverse navbar-fixed-top " style="padding-top:5px;padding-bottom:5px;">
 
 
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img src="~/Content/Images/small-logo.png"  />
-                @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="~/Content/Images/small-logo.png" />
+            @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
+        </div>
 
-           
-     
-            <div class="navbar-collapse collapse">
 
-                <ul class="nav navbar-nav">
-                    
-                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                    <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
-                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                </ul>
-            </div>
 
-            @*<div class="nav navbar-nav navbar-right">
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+
+                <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
+                <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
+                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+            </ul>
+        </div>
+
+        @*<div class="nav navbar-nav navbar-right">
                 <a href="/cart"><span class="badge">@(ViewBag.ItemsInCart ?? 0)</span><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -61,17 +62,17 @@
             </div>*@
 
 
-        </div>
+    </div>
 
 
 
-   
-    
 
-        @RenderBody()
 
-    
-    <footer >
+
+    @RenderBody()
+
+
+    <footer>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-4">
@@ -101,12 +102,12 @@
                     </address>
                 </div>
 
-               
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-               
+
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
             </div>
         </div>
-        
+
 
     </footer>
 
