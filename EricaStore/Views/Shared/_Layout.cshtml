@@ -20,7 +20,7 @@
 
 <body class="font">
     
-        <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="navbar navbar-inverse navbar-fixed-top " style="padding-top:5px;padding-bottom:5px;">
 
 
             <div class="navbar-header">
@@ -29,59 +29,86 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/Content/Images/small-logo.png" />
+                <img src="~/Content/Images/small-logo.png"  />
                 @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
             </div>
-          <!--  <div class="navbar-right">
-                <button class="btn btn-default" data-toggle="popover" title="Cart" data-content="Cart Data Here" data-placement="bottom">
-                    <span style="font-size:1em" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                    @*<span class="badge">{{cart.length}}</span>*@
-                @*</button>*@
-            </div>-->
+
+           
+     
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    
+                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
                     <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
                     <li>@Html.ActionLink("Products", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
                     <li>@Html.ActionLink("Login", "Login", "Account")</li>
                 </ul>
             </div>
 
+            @*<div class="nav navbar-nav navbar-right">
+                <a href="/cart"><span class="badge">@(ViewBag.ItemsInCart ?? 0)</span><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Logout as " + User.Identity.Name, "Logout", "Account")</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                }
+            </div>*@
+
 
         </div>
 
 
+
+   
+    
+
+        @RenderBody()
 
     
-    @if (User.Identity.IsAuthenticated)
-    {
-        <li>@Html.ActionLink("Logout as" + User.Identity.Name, "Logout", "Account")</li>
-    }
-    else
-    {
-        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-    }
+    <footer >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.ActionLink("Contact", "Contact", "Home") <br>
+                    @Html.ActionLink("About Us", "About", "Home")<br>
+                    @Html.ActionLink("Locations", "Home", "Home")<br>
+                    @Html.ActionLink("Delivery Area", "Home", "Home")<br>
+
+                </div>
+
+
+                <div class="col-sm-4">
+                    <strong>Fresh Start Juice Co.</strong><br>
+                    426 West Briar Place<br>
+                    Chicago, IL 60657<br>
+                    <abbr title="Phone">P:</abbr> 708-705-2892
+                </div>
 
 
 
-    @RenderBody()
 
-      
-        <hr />
-        <div class="footerstyle">
-            <footer>
-                <ul>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
 
-                </ul>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <div class="col-sm-4">
+                    <address>
+                        <strong>Fresh Start Juice Co</strong><br>
+                        <a href="mailto:#">info@freshstartjuiceco.com</a>
+                    </address>
+                </div>
 
-            </footer>
+               
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+               
+            </div>
         </div>
+        
+
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

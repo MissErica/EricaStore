@@ -4,18 +4,47 @@
     ViewBag.Title = "Register";
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="container-fluid" style="margin-top:150px">
 
-    @Html.LabelFor(x => x.EmailAddress)
-    @Html.TextBoxFor(x => x.EmailAddress)
-    @Html.ValidationMessageFor(x => x.EmailAddress)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    @Html.LabelFor(x=> x.Password)
-    @Html.PasswordFor(x=> x.Password)
-    @Html.ValidationMessageFor(x=>x.Password)
+        
+        
 
-    <input type="submit" value="Register" />
-    
-}
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-custom"><strong> Register </strong></div>
+        <div class="panel-body">
+
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.EmailAddress, new { @class = "control-label" })
+                @Html.TextBoxFor(x => x.EmailAddress, new { @class = "form-control", placeholder = "@youremail.com" })
+                @Html.ValidationMessageFor(x => x.EmailAddress)
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(x => x.Password)
+
+            </div>
+
+
+
+            <div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
+
+    }
+
+
+</div>

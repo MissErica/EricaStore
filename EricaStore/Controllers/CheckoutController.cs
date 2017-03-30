@@ -12,6 +12,7 @@ namespace EricaStore.Controllers
 {
     public class CheckoutController : Controller
     {
+
         // GET: Checkout
         public ActionResult Index()
         {
@@ -28,7 +29,7 @@ namespace EricaStore.Controllers
             {
                 //TODO: persist order to database and redirect to a receipt page
                 //Validated
-                //TODO: send an email indicating order was places
+                //TODO: send an email indicating order was placed
 
                 string sendGridApiKey = System.Configuration.ConfigurationManager.AppSettings["SendGrid.ApiKey"];
 
@@ -36,7 +37,7 @@ namespace EricaStore.Controllers
                 SendGrid.Helpers.Mail.SendGridMessage message = new SendGrid.Helpers.Mail.SendGridMessage();
                 message.SetTemplateId("713abba9-42f1-41bb-be32-86e3f08347a8");
 
-                //TODO: string.Format("Recepit for order {0}, ord.Id);
+                //TODO: string.Format("Receipt for order {0}, ord.Id);
                 message.Subject = "Receipt for order #000000";
                 message.From = new SendGrid.Helpers.Mail.EmailAddress("admin@freshstartjuiceco.com", "Fresh Start Juice Co");
                 message.AddTo(new SendGrid.Helpers.Mail.EmailAddress(model.ShippingEmail));
@@ -88,7 +89,7 @@ namespace EricaStore.Controllers
                     newShippingAddress.Address2 = model.ShippingAddress2;
                     newShippingAddress.City = model.ShippingCity;
                     newShippingAddress.State = model.ShippingState;
-                   // newShippingAddress.Zipcode = model.ZipCode;
+                    //newShippingAddress.Zipcode = model.ZipCode;
                     ord.Address1 = newShippingAddress;
 
 
@@ -141,13 +142,23 @@ namespace EricaStore.Controllers
             return View(model);
             
         }
-        //[HttpPost]
-        //public ActionResult States()
-        //{
-        //    using (EricaStoreEntities1 entities = new EricaStoreEntities1())
-        //    {
-        //        return Json(
-        //    }
-        //}
+
+        [HttpPost]
+        public ActionResult ValidateAddress(string street1, string street2, string city, string state, string zip)
+        {
+            string authId = ConfigurationManager.AppSettings["SmartyStreets.AuthID"];
+            string authToken = ConfigurationManager.AppSettings["SmartyStreets.AuthToken"];
+            SmartyStreets.USStreetApi.ClientBuilder builder = new SmartyStreets.USStreetApi.ClientBuilder(authId, authToken);
+            SmartyStreets.USStreetApi.Client client = builder.Build();
+            SmartyStreets.USStreetApi.Lookup lookup = new SmartyStreets.USStreetApi.Lookup();
+            lookup.City = city;
+            lookup.State = state;
+            lookup.Street = street1;
+            lookup.Street2 = street2;
+            lookup.ZipCode = zip;
+            client.Send(lookup);
+            return Json(lookup.Result);
         }
+
+    }
     }

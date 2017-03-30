@@ -101,6 +101,10 @@
       <HintPath>..\packages\Sendgrid.9.1.0\lib\net452\SendGrid.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="smartystreets-dotnet-sdk, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\smartystreets-dotnet-sdk.4.0.0\lib\net40\smartystreets-dotnet-sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -249,7 +253,9 @@
     <Content Include="Content\Images\aboutusimage.png" />
     <Content Include="Content\Images\blueorangeflower.png" />
     <Content Include="Content\Images\Fresh Start Juice Co.png" />
+    <Content Include="Content\Images\juicebar.jpeg" />
     <Content Include="Content\Images\mychalk.jpg" />
+    <Content Include="Content\Images\mymap.png" />
     <Content Include="Content\Images\newgrapefruit.jpg" />
     <Content Include="Content\Images\newgrapefruit3.jpg" />
     <Content Include="Content\Images\newnewgrapefruit.jpg" />
@@ -269,7 +275,6 @@
     <Content Include="Content\Images\flowersmoothie.jpeg" />
     <Content Include="Content\Images\fruit3.jpg" />
     <Content Include="Content\Images\healthy-people-woman-girl.jpg" />
-    <Content Include="Content\Images\juicebar.jpeg" />
     <Content Include="Content\Images\juicer.jpg" />
     <Content Include="Content\Images\juices1.jpg" />
     <Content Include="Content\Images\juices2.jpg" />
@@ -427,6 +432,7 @@
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Account\ConfirmSent.cshtml" />
+    <Content Include="Views\Shared\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
