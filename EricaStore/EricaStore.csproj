@@ -251,15 +251,23 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\Images\aboutusimage.png" />
+    <Content Include="Content\Images\apple3.jpeg" />
+    <Content Include="Content\Images\bannana1.jpg" />
     <Content Include="Content\Images\blueorangeflower.png" />
+    <Content Include="Content\Images\cherry2.jpeg" />
+    <Content Include="Content\Images\dragonfruit2.jpeg" />
+    <Content Include="Content\Images\fig2.jpg" />
     <Content Include="Content\Images\Fresh Start Juice Co.png" />
     <Content Include="Content\Images\juicebar.jpeg" />
+    <Content Include="Content\Images\juicer2.png" />
     <Content Include="Content\Images\mychalk.jpg" />
     <Content Include="Content\Images\mymap.png" />
     <Content Include="Content\Images\newgrapefruit.jpg" />
     <Content Include="Content\Images\newgrapefruit3.jpg" />
     <Content Include="Content\Images\newnewgrapefruit.jpg" />
+    <Content Include="Content\Images\pineapple3.jpeg" />
     <Content Include="Content\Images\small-logo.png" />
+    <Content Include="Content\Images\trygrapefruit.jpg" />
     <Content Include="Content\Images\Untitled design.png" />
     <Content Include="Content\themes\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

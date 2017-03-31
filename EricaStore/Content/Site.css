@@ -1,33 +1,4 @@
-﻿/*body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    font-family: 'Philosopher', sans-serif;
-}*/
-
-/*.thumbnail a > img {
-    /* margin-right: auto; */
-    /* margin-left: auto; */
-    /*height: 220px;*/
-}*/
-
-
-
-
-
-/* Set padding to keep content from hitting the edges */
-/*.body-content {
-    padding-left: 55px;
-    padding-right: 15px;
-}*/
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-/*.dl-horizontal dt {
-    white-space: normal;
-}*/
-
-/*Set width on the form input elements since they're 100% wide by default*/
+﻿
 input,
 select,
 textarea {
@@ -36,44 +7,63 @@ textarea {
 
 .margin-top-20 {
     margin-top: 20px;
+    
 }
 
-.pageHero-container {
+.hero-div{
+    margin-top:69px;
+    overflow-x: hidden;
+}
+
+
+#left-div-text{
+    color:white;
+    background-color:black;
+    font-family: 'Oswald', sans-serif;
+    font-size:40px;
+    height:585px;
+    padding:0px;
+    text-align:center;
+
+  
+    
+}
+
+.right-text {
+    height:585px;
+    padding:0px;
+    
+
    
-    position:relative;
-    width:100%;
-    margin-bottom:20px;
+   
 }
 
-.textoverhero {
-    position:relative;
-    bottom:30%;
-    width: 70%;
-    margin-left:20px;
-    padding:10px;
-    background:rgba(255,255,255, 0.7) ;
-
+#step1{
+    height:350px;
+    width:350px;
+    border-radius:50%;
+    border-color:black;
+    border-style:dotted;
+    border-width:thick;
 }
 
+#step1text {
+    display: flex;
+    align-items: center;
+    float:none;
+}
 
-/*.jumbotron {
-    width: 100%;
-    position: relative;
-    height: 100%;
-    margin-left:0px;
-    padding-bottom: 200px;
-    padding-top: 150px;
-    padding-left: 0px;
-    padding-right: 0px;
-    overflow: ;
-    background: url("Images/newgrapefruit.jpg");
-    background-size: cover;
-}*/
+#rowheight {
+    margin-bottom:80px;
+}
 
 
 .font {
-    font-family: 'Philosopher', sans-serif;
-        /*background-color:#CFB590;*/
+    /*font-family: 'Philosopher', sans-serif;*/
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 18px;
+   
+       
 
 }
 
@@ -86,14 +76,10 @@ textarea {
 .navstyle {
     font-family: 'Grand Hotel', cursive;
     font-size: 26px;
-}
-
-.juicebarimg{
-  
- height:400px;
- width:800px;
     
 }
+
+
 
 
 
@@ -106,3 +92,8 @@ textarea {
  
 
 
+.fonts{
+     font-family: 'Oswald', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Harmattan', sans-serif;
+}
