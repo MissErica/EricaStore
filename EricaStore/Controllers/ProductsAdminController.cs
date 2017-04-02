@@ -60,10 +60,38 @@ namespace EricaStore.Controllers
                 product.Created = DateTime.UtcNow;
                 product.Modified = DateTime.UtcNow;
 
-                string fileName = image.FileName;
+                
 
-                image.SaveAs(Server.MapPath("/Content/Images/" + fileName));
-                fileName = "/Content/Images/" + fileName;
+                string fileName = image.FileName;
+                if (fileName == null)
+                    Console.Write("filename is null");
+
+                if (ConfigurationManager.AppSettings["UseLocalStorage"] == "true")
+                {
+                    int i = 1;
+                    while (System.IO.File.Exists(Server.MapPath("/Content/Images/" + fileName)))
+                    {
+                        fileName = System.IO.Path.GetFileNameWithoutExtension(fileName) + i.ToString() + System.IO.Path.GetExtension(fileName);
+                        i++;
+                    }
+                    image.SaveAs(Server.MapPath("/Content/Images/" + fileName));
+                    fileName = "/Content/Images/" + fileName;
+                }
+
+               else
+                {
+                    CloudStorageAccount account = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+                    var blobClient = account.CreateCloudBlobClient();
+                    var rootContainer = blobClient.GetRootContainerReference();
+                    rootContainer.CreateIfNotExists();
+                    rootContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+                    var blob = rootContainer.GetBlockBlobReference(fileName);
+                    blob.UploadFromStream(image.InputStream);
+
+                    fileName = blob.Uri.ToString();
+                }
+                
                 if (db.ProductImages.Any(x => x.ProductID == product.ID))
                 {
                     ProductImage pi = db.ProductImages.FirstOrDefault(x => x.ProductID == product.ID);
@@ -140,6 +168,7 @@ namespace EricaStore.Controllers
                 db.Entry(product).State = EntityState.Modified;
 
                 string fileName = image.FileName;
+                
 
                 image.SaveAs(Server.MapPath("/Content/Images/" + fileName));
                 fileName = "/Content/Images/" + fileName;

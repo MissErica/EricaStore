@@ -97,6 +97,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PayPal, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.8.0\lib\net451\PayPal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SendGrid, Version=9.1.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.9.1.0\lib\net452\SendGrid.dll</HintPath>
       <Private>True</Private>
@@ -224,6 +228,7 @@
     <Compile Include="Models\MembershipType.cs">
       <DependentUpon>EricaStoreModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MembershipTypeModel.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>EricaStoreModels.tt</DependentUpon>
     </Compile>
@@ -254,17 +259,25 @@
     <Content Include="Content\Images\apple3.jpeg" />
     <Content Include="Content\Images\bannana1.jpg" />
     <Content Include="Content\Images\blueorangeflower.png" />
-    <Content Include="Content\Images\cherry2.jpeg" />
+    <Content Include="Content\Images\cherry2.jpg" />
     <Content Include="Content\Images\dragonfruit2.jpeg" />
     <Content Include="Content\Images\fig2.jpg" />
     <Content Include="Content\Images\Fresh Start Juice Co.png" />
     <Content Include="Content\Images\juicebar.jpeg" />
     <Content Include="Content\Images\juicer2.png" />
+    <Content Include="Content\Images\leafygreens1.jpg" />
     <Content Include="Content\Images\mychalk.jpg" />
     <Content Include="Content\Images\mymap.png" />
+    <Content Include="Content\Images\newapple3.jpg" />
+    <Content Include="Content\Images\newbanana1.jpg" />
+    <Content Include="Content\Images\newbodyheart.jpg" />
+    <Content Include="Content\Images\newcherry2.jpg" />
     <Content Include="Content\Images\newgrapefruit.jpg" />
     <Content Include="Content\Images\newgrapefruit3.jpg" />
+    <Content Include="Content\Images\newlocalfarm1.jpg" />
     <Content Include="Content\Images\newnewgrapefruit.jpg" />
+    <Content Include="Content\Images\newspacewalk1.jpg" />
+    <Content Include="Content\Images\newyogapose1.jpg" />
     <Content Include="Content\Images\pineapple3.jpeg" />
     <Content Include="Content\Images\small-logo.png" />
     <Content Include="Content\Images\trygrapefruit.jpg" />
@@ -426,7 +439,7 @@
     <Content Include="Views\Products\Show.cshtml" />
     <Content Include="Views\Checkout\index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\MembershipInfo.cshtml" />
+    <Content Include="Views\Home\MembershipType.cshtml" />
     <Content Include="Views\ProductsAdmin\Create.cshtml" />
     <Content Include="Views\ProductsAdmin\Delete.cshtml" />
     <Content Include="Views\ProductsAdmin\Details.cshtml" />
@@ -441,6 +454,7 @@
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Account\ConfirmSent.cshtml" />
     <Content Include="Views\Shared\ShoppingCart.cshtml" />
+    <Content Include="Views\Account\LandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,9 +30,9 @@ namespace EricaStore.Controllers
 
 
 
-        public ActionResult MembershipInfo()
+        public ActionResult MembershipType()
         {
-            ViewBag.Message = "Why A Membership?";
+            ViewBag.Message = "Select Your Membership";
             return View();
         }
 

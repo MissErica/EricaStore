@@ -39,13 +39,17 @@ textarea {
 }
 
 #step1{
-    height:350px;
-    width:350px;
+    height:310px;
+    width:310px;
     border-radius:50%;
     border-color:black;
     border-style:dotted;
     border-width:thick;
+
 }
+
+
+
 
 #step1text {
     display: flex;
@@ -96,4 +100,33 @@ textarea {
      font-family: 'Oswald', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Harmattan', sans-serif;
+}
+
+
+.samplemenu{
+    margin-bottom:7px;
+}
+
+
+.memtypecol{
+    
+    height:400px;
+    width:300px;
+   border: grey medium solid;
+   border-radius:2%;
+   text-align:center;
+   
+ 
+}
+
+.radio{
+    display:inline-block;
+    height: 1.5em;
+    width: 1.5em;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.memtypebtn{
+    margin-left:600px;
 }

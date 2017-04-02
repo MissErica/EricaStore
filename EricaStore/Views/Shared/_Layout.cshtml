@@ -33,6 +33,10 @@
             </button>
             <img src="~/Content/Images/small-logo.png" />
             @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
+
+           
+
+
         </div>
 
 
@@ -42,26 +46,56 @@
             <ul class="nav navbar-nav">
 
                 <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                <li>@Html.ActionLink("Membership Info", "MembershipInfo", "Home")</li>
-                <li>@Html.ActionLink("Products", "Index", "Products")</li>
+               
                 <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
                 <li>@Html.ActionLink("Login", "Login", "Account")</li>
+              </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/cart">
+                        <span class="badge">@(ViewBag.ItemsInCart ?? 0)</span>
+                        <i class="fa fa-shopping-cart" style="color:limegreen; font-size:1.9em; padding-right:25px" aria-hidden="true"></i>
+
+                    </a>
+                </li>
             </ul>
+            @*@if (User.Identity.IsAuthenticated)
+        {
+            <li>@Html.ActionLink("Logout as " + User.Identity.Name, "Logout", "Account")</li>
+        }
+        else
+        {
+            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+        }*@
+
+
+            @*<div class="nav navbar-nav navbar-right">
+            <a href="/cart"><span class="badge">@(ViewBag.ItemsInCart ?? 0)</span><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>@Html.ActionLink("Logout as " + User.Identity.Name, "Logout", "Account")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+            }
+        </div>*@
+
+
+
+
+            
+            
         </div>
 
-        @*<div class="nav navbar-nav navbar-right">
-                <a href="/cart"><span class="badge">@(ViewBag.ItemsInCart ?? 0)</span><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>@Html.ActionLink("Logout as " + User.Identity.Name, "Logout", "Account")</li>
-                }
-                else
-                {
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                }
-            </div>*@
+        
 
+
+
+        
 
     </div>
 
@@ -74,13 +108,16 @@
 
 
     <footer>
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-top:50px">
             <div class="row">
                 <div class="col-sm-4">
                     @Html.ActionLink("Contact", "Contact", "Home") <br>
                     @Html.ActionLink("About Us", "About", "Home")<br>
                     @Html.ActionLink("Locations", "Home", "Home")<br>
                     @Html.ActionLink("Delivery Area", "Home", "Home")<br>
+                    @Html.ActionLink("Membership Info", "MembershipInfo", "Home")
+                    @Html.ActionLink("Products", "Index", "Products")
+
 
                 </div>
 

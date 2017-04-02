@@ -38,17 +38,17 @@
 
     <div class="row" id="rowheight">
         <div class="col-md-6">
-            <img id="step1" src="~/Content/Images/bannana1.jpg" />
+            <img id="step1" src="~/Content/Images/newbanana1.jpg" />
         </div>
         <div class="col-md-6 id=" step1text"">
             <h1 style="font-size:48px">Step 1</h1>
             <p style="font-size:24px">
-                See if we deliver to your area, then register
+                See if we deliver to your area, then register for a free account
             </p>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deliverymodal">Delivery Area</button>
-               
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deliverymodal">Delivery Area</button>
+
             <button type="button" class="btn btn-success btn-lg" onclick="location.href='@Url.Action("Register", "Account")';return false;">Register</button>
-            
+
         </div>
     </div>
 
@@ -59,36 +59,42 @@
             <p style="font-size:24px">
                 Pick your membership level
             </p>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deliverymodal">MEMBERHSIP/PRICING?</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pricingmodal">Memberships/Pricing</button>
 
-            <button type="button" class="btn btn-success btn-lg" onclick="location.href='@Url.Action("Register", "Account")';return false;">Register</button>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#step2infomodal">More info </button>
 
         </div>
         <div class="col-md-6">
-            <img id="step1" src="~/Content/Images/cherry2.jpeg" />
+            <img id="step1" src="~/Content/Images/newcherry2.jpg" />
         </div>
 
     </div>
 
     <div class="row" id="rowheight">
         <div class="col-md-6">
-            <img id="step1" src="~/Content/Images/apple3.jpeg" />
+            <img id="step1" src="~/Content/Images/newapple3.jpg" />
         </div>
         <div class="col-md-6">
             <h1 style="font-size:48px">Step 3</h1>
             <p style="font-size:24px">
-                Choose your juice
+                Choose your juice and checkout!
             </p>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deliverymodal">SEE SAMPLE JUICE MENU</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#juicemenumodal">SEE SAMPLE JUICE MENU</button>
 
-            <button type="button" class="btn btn-success btn-lg" onclick="location.href='@Url.Action("Register", "Account")';return false;">Register</button>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#aboutjuicemodal">Our juice philosophy</button>
         </div>
     </div>
 </div>
+<br />
+<br />
+
+<div>
+
+    <h1 style="text-align:center; font-size:70px"> Get ready....super fresh juice coming your way!</h1>
+</div>
 
 
-
-
+<!--modal for step 1-->
 
 
 <div class="modal fade" id="deliverymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,7 +102,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Delivery Area</h4>
+                <h4 class="modal-title" id="myModalLabel"><strong>Delivery Area  </strong></h4>
             </div>
             <div class="modal-body">
 
@@ -104,11 +110,280 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--modal 1 for step 2-->
+
+<div class="modal fade" id="step2infomodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> <strong> Membership Info </strong></h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li> New memberships take 3 business days to process before delivery begins on 4th business day</li>
+                    <li> Each membership level requires two months minimum subscription</li>
+                    <li> All memberships are paid auto-pay on the 7th of each month</li>
+                    <li>
+                        If member will be travelling or away from home during a period of 3 or more days:
+                        <ul>
+                            <li> member can withold delivery for up to 10 days max at which time membership can be suspended</li>
+                            <li> the witheld time can be credited to member's account balance for the following payment cycle  </li>
+                            <li> 5 days prior notice is required via email with "from" and "to" dates member will be away</li>
+                        </ul>
+                    </li>
+                    <li> Memberships renew monthly automatically and require 30 days notice via email to cancel subscription</li>
+                    <li> Membership upgrades will process for the following month</li>
+                    <li>
+                        There is no fee for joining or cancelling, but keep in mind if you cancel mid-month, you will be charged for <br />
+                        the following month's subscription whether you choose to keep the juices or not.
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal 2 for step 2-->
+
+<div class="modal fade" id="pricingmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><strong> Memberships and Pricing </strong></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="~/Content/Images/newbodyheart.jpg" alt="...">
+                            <div class="caption">
+                                <h3>Ultimate Fix</h3>
+                                <h5>Delivery days: Mon, Tues, Wed, Thurs, Fri </h5>
+                                <p>
+                                    Our best selling and best-value package overall! Five days of fresh juices delivered direct to your door a week!* 
+                                </p>
+                                <p><strong>Price: $150 per month</strong></p>
+                                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Register", "Account")';return false;">Sign me up!</button>
+
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="~/Content/Images/newyogapose1.jpg" alt="...">
+                            <div class="caption">
+                                <h3>Triple Booster</h3>
+                                <h5>Delivery days: Tues, Thurs, Sat </h5>
+                                <p>
+                                    Mix it up with the three days a week package. Power your goals.*
+                                </p>
+                                <p><strong>Price: $115 per month</strong></p>
+                                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Register", "Account")';return false;">I want it</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="~/Content/Images/newspacewalk1.jpg" alt="...">
+                            <div class="caption">
+                                <h3>Weekend Warrior</h3>
+                                <h5>Delivery days: Sat, Sun </h5>
+                                <p>
+                                    Show your weekend who's boss!*
+                                </p>
+                                <p><strong>Price: $65 per month</strong></p>
+                                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Register", "Account")';return false;">I'm the boss!</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                *Except certain holidays
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
     </div>
+</div>
+
+
+
+
+<!--modal 1 for step 3-->
+
+<div class="modal fade" id="juicemenumodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> <strong> Sample Juice Menu </strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6 samplemenu">
+                        <img src="~/Content/Images/pineapple3.jpeg" style="height:150px; width:200px;" />
+                    </div>
+                    <div class="col-xs-6">
+                        <p> <strong>  Welcome to the Jungle </strong> </p>
+                        <p> <strong> Organic Ingredients:</strong> banana, papaya, spinach, almond butter, mango, lemon, pineapple, chia seeds, coconut water, baobab powder, spirulina powder </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 samplemenu">
+                        <img src="~/Content/Images/leafygreens1.jpg" style="height:150px; width:200px;" />
+                    </div>
+                    <div class="col-xs-6">
+                        <p> <strong>  Green Hornet </strong> </p>
+                        <p> <strong> Organic Ingredients:</strong>  spinach, red kale, wheatgrass, avocado, spirulina powder, apple, parsley, lime, lemon, ginger, cayenne  </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img src="~/Content/Images/flowersmoothie.jpeg" style="height:150px; width:200px;" />
+                    </div>
+                    <div class="col-xs-6">
+                        <p> <strong> Moondance </strong> </p>
+                        <p> <strong> Organic Ingredients:</strong>  spinach, dragonfruit, chamomile, macaroot powder, viola petals, lychee, black tea, young coconut milk   </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--modal 2 for step 3-->
+
+<div class="modal fade" id="aboutjuicemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> <strong> Our Juice Philosophy </strong></h4>
+            </div>
+            <div class="modal-body">
+
+                <p>
+                    We think organic fruits, vegetables, herbs and spices are incredibly important. We also think that sourcing from local organic farms first is especially important for
+                    our health, well-being and sustainability. We strive to present our faithful customers with the best-tasting
+                    products that mother nature can produce. Our nutrient dense formulations provide your body with a substantial amount of vitamins, minerals,
+                    omegas, fiber and protein to get your brain and body moving for the day. Our blends will change from month-to-month and season-to-season to reflect
+                    the bounty and peak quality freshness. We believe in our product and our promise to serve you, now it's your turn to sign up and receive the benefits.
+
+                </p>
+
+                <img src="~/Content/Images/newlocalfarm1.jpg" style="width:100%" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="container">
+            <div class="row">
+                <div class="well">
+
+
+                    <h2> We are....</h2>
+
+                    <p>
+                        Your neighborhood juice bar. Local. All organic no exceptions! We try to source
+                        locally first to find the freshest highest quality ingredients possible. We know you're busy,
+                        we get it. We also know that your busy schedules sometimes can leave you lacking in healthy food consumption.
+                        It's been proven that how you start your morning sets the tone for the rest of your day. Why not start your day on
+                        the right note?
+                    </p>
+
+                    <div>
+                        <img src="~/Content/Images/juicebar.jpeg" class="center-block" style="height:350px; width:700px" />
+
+                    </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+    @*<div class="container">
+
+
+
+                <div class="col-md-6">
+                    <div class="well">
+                        <img src="~/Content/Images/juicer.jpg" style="max-width:100%; height:220px" class="center-block"/>
+                        <h2>How It Works</h2>
+                        <p>
+
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                            modal
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="well">
+                        <img src="~/Content/Images/localmarket.jpeg" style="max-width:100%; height:220px" />
+                        <h2>See our Delivery Area</h2>
+                        <p/p>
+                        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="well">
+                        <img src="~/Content/Images/juicesmoothiepacks.jpg" style="max-width:100%; height:220px" />
+                        <h2>Pricing and Membership Info</h2>
+                        <p></p>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deliverymodal">
+                            modal
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -117,133 +392,51 @@
 
 
 
-                @*<div class="container">
-                    <div class="row">
-                        <div class="well">
 
 
-                            <h2> We are....</h2>
-
-                            <p>
-                                Your neighborhood juice bar. Local. All organic no exceptions! We try to source
-                                locally first to find the freshest highest quality ingredients possible. We know you're busy,
-                                we get it. We also know that your busy schedules sometimes can leave you lacking in healthy food consumption.
-                                It's been proven that how you start your morning sets the tone for the rest of your day. Why not start your day on
-                                the right note?
-                            </p>
-
-                            <div>
-                                <img src="~/Content/Images/juicebar.jpeg" class="center-block" style="height:350px; width:700px" />
-
-                            </div>
-                            </div>
-
-
-
-
-
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                         </div>
+                        <div class="modal-body">
+                            Cupcake ipsum dolor sit. Amet chupa chups chocolate bar danish macaroon gummi bears pastry jelly. Chocolate dessert pastry dragée. Lollipop chupa chups brownie cake powder lemon drops croissant muffin donut. Chupa chups dessert liquorice biscuit chupa chups wafer chocolate. Jujubes danish cake toffee jelly macaroon gummi bears marshmallow cookie. Bonbon wafer danish jelly beans topping chocolate cake cupcake dessert. Brownie jujubes jelly-o tiramisu. Tootsie roll tart croissant icing cotton candy jelly-o tootsie roll.
+                            Muffin sweet sugar plum liquorice gummi bears pie bear claw. Marshmallow jelly-o sweet dragée lollipop. Pastry pie marzipan. Biscuit macaroon marzipan cake halvah lollipop powder sesame snaps muffin. Danish apple pie toffee marzipan chupa chups dessert croissant macaroon. Gummies dragée cupcake jelly-o powder lemon drops tootsie roll macaroon.
+                            Icing danish icing liquorice. Lemon drops apple pie toffee bonbon chupa chups. Macaroon sesame snaps cheesecake. Chocolate cake liquorice chocolate cake marshmallow sweet. Ice cream donut muffin cake chocolate bar jelly-o jelly beans marzipan sweet. Candy dragée cotton candy caramels icing carrot cake marzipan tart.
 
-
-                    </div>*@
-
-
-
-
-
-
-                @*<div class="container">
-
-
-
-                            <div class="col-md-6">
-                                <div class="well">
-                                    <img src="~/Content/Images/juicer.jpg" style="max-width:100%; height:220px" class="center-block"/>
-                                    <h2>How It Works</h2>
-                                    <p>
-
-                                    </p>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                                        modal
-                                    </button>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-3">
-                                <div class="well">
-                                    <img src="~/Content/Images/localmarket.jpeg" style="max-width:100%; height:220px" />
-                                    <h2>See our Delivery Area</h2>
-                                    <p/p>
-                                    <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="well">
-                                    <img src="~/Content/Images/juicesmoothiepacks.jpg" style="max-width:100%; height:220px" />
-                                    <h2>Pricing and Membership Info</h2>
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deliverymodal">
-                                        modal
-                                    </button>
-                                </div>
-                            </div>
+                            ...
                         </div>
-
-
-
-
-
-
-
-
-
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Cupcake ipsum dolor sit. Amet chupa chups chocolate bar danish macaroon gummi bears pastry jelly. Chocolate dessert pastry dragée. Lollipop chupa chups brownie cake powder lemon drops croissant muffin donut. Chupa chups dessert liquorice biscuit chupa chups wafer chocolate. Jujubes danish cake toffee jelly macaroon gummi bears marshmallow cookie. Bonbon wafer danish jelly beans topping chocolate cake cupcake dessert. Brownie jujubes jelly-o tiramisu. Tootsie roll tart croissant icing cotton candy jelly-o tootsie roll.
-                                        Muffin sweet sugar plum liquorice gummi bears pie bear claw. Marshmallow jelly-o sweet dragée lollipop. Pastry pie marzipan. Biscuit macaroon marzipan cake halvah lollipop powder sesame snaps muffin. Danish apple pie toffee marzipan chupa chups dessert croissant macaroon. Gummies dragée cupcake jelly-o powder lemon drops tootsie roll macaroon.
-                                        Icing danish icing liquorice. Lemon drops apple pie toffee bonbon chupa chups. Macaroon sesame snaps cheesecake. Chocolate cake liquorice chocolate cake marshmallow sweet. Ice cream donut muffin cake chocolate bar jelly-o jelly beans marzipan sweet. Candy dragée cotton candy caramels icing carrot cake marzipan tart.
-
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        @*<button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            @*<button type="button" class="btn btn-primary">Save changes</button>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        </div>
+            </div>
 
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="deliverymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
+        <!-- Modal -->
+        <div class="modal fade" id="deliverymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
 
-                                    <img src="~/Content/Images/mymap.png" style="width:100%" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    @*<button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>*@
+                        <img src="~/Content/Images/mymap.png" style="width:100%" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>*@
 
 

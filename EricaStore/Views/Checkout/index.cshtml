@@ -156,6 +156,7 @@
 
 
                         <button type="submit" class="btn-success btn-lg">Place Order</button>
+                        <div id="paypal-button"></div>
 
 
 
@@ -300,11 +301,30 @@
 
             });
         </script>
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+    paypal.Button.render({
+
+        env: 'production', // Optional: specify 'sandbox' environment
+
+        payment: function() {
+            // Set up the payment here, when the buyer clicks on the button
+        },
+
+        onAuthorize: function(data, actions) {
+            // Execute the payment here, when the buyer approves the transaction
+       }
+
+    }, '#paypal-button');
+    </script>
+    
     }
 
 
 
-
+    
 
 
 

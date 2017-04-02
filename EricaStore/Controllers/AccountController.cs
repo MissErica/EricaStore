@@ -85,15 +85,6 @@ namespace EricaStore.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
                     if (result.Succeeded)
                     {
                         FormsAuthentication.SetAuthCookie(model.EmailAddress, true);
@@ -131,11 +122,6 @@ namespace EricaStore.Controllers
 
 
 
-
-
-
-
-
         public ActionResult Login()
         {
 
@@ -165,6 +151,11 @@ namespace EricaStore.Controllers
                 }
             }
             return View(model);
+        }
+
+        public ActionResult LandingPage()
+        {
+            return View();
         }
     }
 
