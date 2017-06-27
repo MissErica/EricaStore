@@ -36,6 +36,12 @@
 
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(x => x.ConfirmPassword, new { @class = "control-label" })
+                @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(x => x.ConfirmPassword)
+
+            </div>
 
 
             <div>

@@ -78,6 +78,8 @@
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
     <Build Include="dbo\Tables\AspNetUserRoles.sql" />
     <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\MembershipTypeUsers.sql" />
+    <Build Include="dbo\Tables\__MigrationHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Scripts\Script.PostDeployment1.sql" />

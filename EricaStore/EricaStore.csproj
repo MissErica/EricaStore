@@ -178,6 +178,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\Address.cs">
       <DependentUpon>EricaStoreModels.tt</DependentUpon>
     </Compile>
@@ -229,6 +231,9 @@
       <DependentUpon>EricaStoreModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MembershipTypeModel.cs" />
+    <Compile Include="Models\MembershipTypeUser.cs">
+      <DependentUpon>EricaStoreModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>EricaStoreModels.tt</DependentUpon>
     </Compile>
@@ -279,6 +284,7 @@
     <Content Include="Content\Images\newspacewalk1.jpg" />
     <Content Include="Content\Images\newyogapose1.jpg" />
     <Content Include="Content\Images\pineapple3.jpeg" />
+    <Content Include="Content\Images\retina_wood.png" />
     <Content Include="Content\Images\small-logo.png" />
     <Content Include="Content\Images\trygrapefruit.jpg" />
     <Content Include="Content\Images\Untitled design.png" />
@@ -402,6 +408,7 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -439,7 +446,7 @@
     <Content Include="Views\Products\Show.cshtml" />
     <Content Include="Views\Checkout\index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\MembershipType.cshtml" />
+    <Content Include="Views\Account\MembershipType.cshtml" />
     <Content Include="Views\ProductsAdmin\Create.cshtml" />
     <Content Include="Views\ProductsAdmin\Delete.cshtml" />
     <Content Include="Views\ProductsAdmin\Details.cshtml" />
@@ -454,7 +461,7 @@
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Account\ConfirmSent.cshtml" />
     <Content Include="Views\Shared\ShoppingCart.cshtml" />
-    <Content Include="Views\Account\LandingPage.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

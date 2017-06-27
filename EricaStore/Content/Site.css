@@ -80,8 +80,9 @@ textarea {
 .navstyle {
     font-family: 'Grand Hotel', cursive;
     font-size: 26px;
-    
 }
+
+
 
 
 
@@ -129,4 +130,31 @@ font-family: 'Harmattan', sans-serif;
 
 .memtypebtn{
     margin-left:600px;
+    
+}
+
+.wow {
+   visibility: hidden;
+}
+#footerstyle, footer > div  {
+    background-color:#002B3B;
+    color:white;
+}
+
+/*.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -61px;
+    padding-bottom: 61px;
+}*/
+
+
+.acctsum {
+    border: grey medium solid;
+
+}
+
+#woodpanel {
+    background-image:url(/Content/Images/retina_wood.png);
 }

@@ -1,0 +1,70 @@
+﻿@model EricaStore.Models.MembershipTypeModel[]
+@{
+    ViewBag.Title = "MembershipType";
+}
+
+<div style="margin-top:80px"></div>
+
+    <h1>@ViewBag.Message</h1>
+    <br />
+
+    <div class="container">
+
+        <div class="row">
+            @foreach (var membershipType in Model)
+            {
+            <div class="col-md-4">
+                <div class="memtypecol">
+                    <h2><strong>@membershipType.Name</strong></h2>
+                    @membershipType.Price.ToString("C")
+                    <br />
+                    <img src="data:image/jpeg;base64, @Convert.ToBase64String(membershipType.Image)" />
+                    <br />
+                    <p>@membershipType.Description</p>
+
+                    <input type="radio" id="selector" name="selector" class="radio" value="@membershipType.ID" />
+
+                </div>
+            </div>
+            }
+            
+        </div>
+
+       
+
+    </div>
+    @for (int i = 0; i < Model.Length; i++)
+    {
+    <div class="plandetails @Model[i].ID" style="display:none">
+        <p>@Model[i].Description</p>
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" name="ID" value="@Model[i].ID" />
+       
+        @*<input type="submit" value="This is the plan for me!" />*@
+        <button type="submit" class="btn btn-default"> YES! I want this one!</button>
+
+        }
+        
+    </div>
+    }
+
+    <div class="memtypebtn">
+
+        <button type="submit" class="btn btn-lg btn-success">Add to Cart</button>
+
+        <a href='@Url.Action("Index", "Account")' class="btn btn-lg btn-primary">Back to Account </a>
+    </div>
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input:radio').change( function() {
+                var planid = $("input[name='selector']:checked").val();
+                $('.plandetails').hide();
+                $('.plandetails' + '.' + planid).show();
+                
+            });
+        });
+</script>
+}

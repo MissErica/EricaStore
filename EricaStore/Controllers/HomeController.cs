@@ -12,7 +12,10 @@ namespace EricaStore.Controllers
         public ActionResult Index()
         {
             return View();
+                
         }
+
+       
 
         public ActionResult About()
         {
@@ -30,11 +33,7 @@ namespace EricaStore.Controllers
 
 
 
-        public ActionResult MembershipType()
-        {
-            ViewBag.Message = "Select Your Membership";
-            return View();
-        }
+
 
 
         [HttpPost]

@@ -22,6 +22,7 @@ namespace EricaStore.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Orders = new HashSet<Order>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.MembershipTypeUsers = new HashSet<MembershipTypeUser>();
         }
     
         public string Id { get; set; }
@@ -47,5 +48,7 @@ namespace EricaStore.Models
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MembershipTypeUser> MembershipTypeUsers { get; set; }
     }
 }

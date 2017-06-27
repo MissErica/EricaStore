@@ -18,13 +18,22 @@ namespace EricaStore.Models
         public MembershipType()
         {
             this.Products = new HashSet<Product>();
+            this.OrderProducts = new HashSet<OrderProduct>();
+            this.MembershipTypeUsers = new HashSet<MembershipTypeUser>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string Description { get; set; }
+        public byte[] Image { get; set; }
+        public string Days { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MembershipTypeUser> MembershipTypeUsers { get; set; }
     }
 }

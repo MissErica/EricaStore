@@ -1,0 +1,65 @@
+﻿@model EricaStore.Models.AccountModel
+@{
+    ViewBag.Title = "LandingPage";
+}
+
+<div class="container-fluid" style="margin-top:80px; padding:0px; background:url(/Content/Images/retina_wood.png)">
+
+    <div style="text-align:center">
+        <h1 style= "font-family: Grand Hotel, cursive; font-size:48px"> Welcome back,  </h1>
+        <h1 class="animated fadeInUp" style="text-shadow: 2px 2px 2px #000"> @User.Identity.Name</h1>
+        <br />
+        <h3>Today is @DateTime.Now.ToString()</h3>
+    </div>
+
+
+
+
+
+    <div class="container" style="margin-top:100px; border:gray medium solid; display:block; text-align:center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><strong>Account Summary</strong></h2>
+                <h3><strong>My Membership Level : @(Model.SelectedMembership != null ? Model.SelectedMembership.Name : "None")  </strong></h3>
+                 @Html.ActionLink("Select Membership Level", "MembershipType")
+               
+                @for (int i = 0; i <= (int)System.DayOfWeek.Saturday; i++)
+                {
+                    if (Model.DaysAvailable.Contains((DayOfWeek)i))
+                    {
+                        <div>
+                            <span>@((System.DayOfWeek)i) Is Active</span>
+                           
+                        </div>
+
+                    }
+                }
+        </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+   
+
+    <div style="margin-top:50px;">
+        <div class="panel panel-default" style="height:260px; ">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>Juices</strong></h3>
+            </div>
+            <div class="panel-body">
+                <strong> Select Juices:</strong> ___display juices selected, if null then display button to select___
+                and redirects to Products page
+                @Html.ActionLink("Choose the Juice", "Index", "Products", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EricaStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EricaStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID" />
@@ -77,6 +77,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Days" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MembershipTypeProduct">
           <Key>
@@ -85,6 +88,16 @@
           </Key>
           <Property Name="MembershipID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MembershipTypeUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -240,6 +253,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MembershipTypeUsers_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MembershipTypeUsers" Type="Self.MembershipTypeUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembershipTypeUsers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MembershipTypeUsers_MembershipType">
+          <End Role="MembershipType" Type="Self.MembershipType" Multiplicity="1" />
+          <End Role="MembershipTypeUsers" Type="Self.MembershipTypeUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MembershipTypeUsers">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -291,12 +328,12 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1">
+          <End Role="MembershipType" Type="Self.MembershipType" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="MembershipType">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="OrderProduct">
@@ -341,6 +378,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembershipTypeProduct" EntityType="Self.MembershipTypeProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembershipTypeUsers" EntityType="Self.MembershipTypeUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -374,6 +412,14 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="MembershipTypeProduct" EntitySet="MembershipTypeProduct" />
           </AssociationSet>
+          <AssociationSet Name="FK_MembershipTypeUsers_AspNetUsers" Association="Self.FK_MembershipTypeUsers_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MembershipTypeUsers" EntitySet="MembershipTypeUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MembershipTypeUsers_MembershipType" Association="Self.FK_MembershipTypeUsers_MembershipType">
+            <End Role="MembershipType" EntitySet="MembershipType" />
+            <End Role="MembershipTypeUsers" EntitySet="MembershipTypeUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_AspNetUsers" Association="Self.FK_Order_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Order" EntitySet="Order" />
@@ -391,7 +437,7 @@
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
-            <End Role="Product" EntitySet="Product" />
+            <End Role="MembershipType" EntitySet="MembershipType" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductImage_Product" Association="Self.FK_ProductImage_Product">
@@ -403,8 +449,7 @@
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EricaStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -475,6 +520,7 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_AspNetUsers" FromRole="AspNetUsers" ToRole="Order" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="MembershipTypeUsers" Relationship="EricaStoreModel.FK_MembershipTypeUsers_AspNetUsers" FromRole="AspNetUser" ToRole="MembershipTypeUser" />
         </EntityType>
         <EntityType Name="MembershipType">
           <Key>
@@ -484,6 +530,11 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.MembershipTypeProduct" FromRole="MembershipType" ToRole="Product" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Days" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderProducts" Relationship="EricaStoreModel.FK_OrderProduct_Product1" FromRole="MembershipType" ToRole="OrderProduct" />
+          <NavigationProperty Name="MembershipTypeUsers" Relationship="EricaStoreModel.FK_MembershipTypeUsers_MembershipType" FromRole="MembershipType" ToRole="MembershipTypeUser" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -516,6 +567,7 @@
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
+          <NavigationProperty Name="MembershipType" Relationship="EricaStoreModel.FK_OrderProduct_Product1" FromRole="OrderProduct" ToRole="MembershipType" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -759,8 +811,71 @@
             <End Role="MembershipType" EntitySet="MembershipTypes" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <AssociationSet Name="FK_OrderProduct_Product1" Association="EricaStoreModel.FK_OrderProduct_Product1">
+            <End Role="MembershipType" EntitySet="MembershipTypes" />
+            <End Role="OrderProduct" EntitySet="OrderProducts" />
+          </AssociationSet>
+          <EntitySet Name="MembershipTypeUsers" EntityType="EricaStoreModel.MembershipTypeUser" />
+          <AssociationSet Name="FK_MembershipTypeUsers_AspNetUsers" Association="EricaStoreModel.FK_MembershipTypeUsers_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="MembershipTypeUser" EntitySet="MembershipTypeUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MembershipTypeUsers_MembershipType" Association="EricaStoreModel.FK_MembershipTypeUsers_MembershipType">
+            <End Role="MembershipType" EntitySet="MembershipTypes" />
+            <End Role="MembershipTypeUser" EntitySet="MembershipTypeUsers" />
+          </AssociationSet>
+          </EntityContainer>
+        <Association Name="FK_OrderProduct_Product1">
+          <End Type="EricaStoreModel.MembershipType" Role="MembershipType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EricaStoreModel.OrderProduct" Role="OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MembershipTypeUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="EricaStoreModel.FK_MembershipTypeUsers_AspNetUsers" FromRole="MembershipTypeUser" ToRole="AspNetUser" />
+          <NavigationProperty Name="MembershipType" Relationship="EricaStoreModel.FK_MembershipTypeUsers_MembershipType" FromRole="MembershipTypeUser" ToRole="MembershipType" />
+        </EntityType>
+        <Association Name="FK_MembershipTypeUsers_AspNetUsers">
+          <End Type="EricaStoreModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EricaStoreModel.MembershipTypeUser" Role="MembershipTypeUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembershipTypeUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MembershipTypeUsers_MembershipType">
+          <End Type="EricaStoreModel.MembershipType" Role="MembershipType" Multiplicity="1" />
+          <End Type="EricaStoreModel.MembershipTypeUser" Role="MembershipTypeUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MembershipTypeUser">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -829,6 +944,9 @@
           <EntitySetMapping Name="MembershipTypes">
             <EntityTypeMapping TypeName="EricaStoreModel.MembershipType">
               <MappingFragment StoreEntitySet="MembershipType">
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -917,6 +1035,17 @@
               <ScalarProperty Name="ID" ColumnName="ProductID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="MembershipTypeUsers">
+            <EntityTypeMapping TypeName="EricaStoreModel.MembershipTypeUser">
+              <MappingFragment StoreEntitySet="MembershipTypeUsers">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

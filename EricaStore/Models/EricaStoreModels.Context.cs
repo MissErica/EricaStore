@@ -36,5 +36,6 @@ namespace EricaStore.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<MembershipTypeUser> MembershipTypeUsers { get; set; }
     }
 }

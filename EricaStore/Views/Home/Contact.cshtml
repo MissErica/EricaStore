@@ -1,4 +1,4 @@
-﻿<div style="margin-top:80px"> </div>
+﻿<div class="container-fluid" style="margin-top:80px"> 
 
 @{
     ViewBag.Title = "Contact";
@@ -6,21 +6,22 @@
 <h2>@ViewBag.Title.</h2>
 
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    <address>
+        426 W Briar Place
+        Chicago, IL 606057
+    </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <address>
+        <strong>Support:</strong>   <a href="mailto:admin@freshstartjuiceco.com">admin@freshstartjuiceco.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:admin@freshstartjuiceco.com">admin@freshstartjuiceco.com</a>
+    </address>
 
-<h3>@ViewBag.Message</h3>
-<form method="post">
+    <h3>@ViewBag.Message</h3>
+    <form method="post">
 
-    <textarea name="message"> </textarea>
-    <input type="submit" value= "Send" />
-</form>
+        <textarea name="message"> </textarea>
+        <button type="submit" class="btn btn-default">Submit Message</button>
+       
+    </form>
+
+</div>

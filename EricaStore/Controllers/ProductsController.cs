@@ -101,7 +101,7 @@ namespace EricaStore.Controllers
                 entities.SaveChanges();
                 TempData.Add("AddedToCart", true);
 
-
+            }
                 return RedirectToAction("Index", "Cart");
 
             }
@@ -111,7 +111,8 @@ namespace EricaStore.Controllers
    
 
     
-}
+
+
 
  
 

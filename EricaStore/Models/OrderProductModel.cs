@@ -9,6 +9,7 @@ namespace EricaStore.Models
     {
        public int OrderId { get; set; }
         public int ProductID { get; set; }
+        public int MembershipTypeID { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }
 

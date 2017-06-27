@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Philosopher" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Harmattan|Oswald|Ubuntu+Condensed" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    
 
     @Styles.Render("~/Content/css")
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
@@ -32,11 +34,12 @@
                 <span class="icon-bar"></span>
             </button>
             <img src="~/Content/Images/small-logo.png" />
-            @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
-
+            
+                @Html.ActionLink("Fresh Start Juice Co", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navstyle" })
+            
            
 
-
+             
         </div>
 
 
@@ -52,13 +55,19 @@
               </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Logout", "Index", "Home")</li>
+                }
                 <li>
+
                     <a href="/cart">
                         <span class="badge">@(ViewBag.ItemsInCart ?? 0)</span>
                         <i class="fa fa-shopping-cart" style="color:limegreen; font-size:1.9em; padding-right:25px" aria-hidden="true"></i>
 
                     </a>
                 </li>
+               
             </ul>
             @*@if (User.Identity.IsAuthenticated)
         {
@@ -107,10 +116,10 @@
     @RenderBody()
 
 
-    <footer>
-        <div class="container-fluid" style="margin-top:50px">
+    <footer class="wrapper" >
+        <div class="container-fluid " style="margin-top:100px">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4" >
                     @Html.ActionLink("Contact", "Contact", "Home") <br>
                     @Html.ActionLink("About Us", "About", "Home")<br>
                     @Html.ActionLink("Locations", "Home", "Home")<br>
@@ -148,11 +157,19 @@
 
 
     </footer>
+    <script src="~/Scripts/myapp.js"></script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
+   
     @RenderSection("scripts", required: false)
 
+  
+   
+  
 </body>
 </html>
+
+
+

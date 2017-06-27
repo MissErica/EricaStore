@@ -21,32 +21,15 @@ namespace EricaStore.Controllers
             return View(model);
         }
 
+
+
+        //sendgrid and braintree api
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(CheckoutModel model)
         {
             if (ModelState.IsValid)
             {
-                //TODO: persist order to database and redirect to a receipt page
-                //Validated
-                //TODO: send an email indicating order was placed
-
-                string sendGridApiKey = System.Configuration.ConfigurationManager.AppSettings["SendGrid.ApiKey"];
-
-                SendGrid.SendGridClient client = new SendGrid.SendGridClient(sendGridApiKey);
-                SendGrid.Helpers.Mail.SendGridMessage message = new SendGrid.Helpers.Mail.SendGridMessage();
-                message.SetTemplateId("713abba9-42f1-41bb-be32-86e3f08347a8");
-
-                //TODO: string.Format("Receipt for order {0}, ord.Id);
-                message.Subject = "Receipt for order #000000";
-                message.From = new SendGrid.Helpers.Mail.EmailAddress("admin@freshstartjuiceco.com", "Fresh Start Juice Co");
-                message.AddTo(new SendGrid.Helpers.Mail.EmailAddress(model.ShippingEmail));
-                SendGrid.Helpers.Mail.Content contents = new SendGrid.Helpers.Mail.Content("text/html", "Thank you for placing your order with Fresh Start Juice Co");
-                
-                message.AddContent(contents.Type, contents.Type);
-
-                await client.SendEmailAsync(message);
-
                 using (Models.EricaStoreEntities entities = new EricaStoreEntities())
                 {
                     Order ord = null;
@@ -58,7 +41,7 @@ namespace EricaStore.Controllers
                         {
                             ord = new Order();
                             ord.ConfirmationNumber = Guid.NewGuid();
-                           currentUser.Orders.Add(ord);
+                            currentUser.Orders.Add(ord);
                             entities.SaveChanges();
                         }
                     }
@@ -95,6 +78,42 @@ namespace EricaStore.Controllers
 
 
                     //entities.sp_CompleteOrder(ord.Id);
+
+
+
+
+
+
+
+
+
+
+
+
+                    //TODO: persist order to database and redirect to a receipt page
+                    //Validated
+                    //TODO: send an email indicating order was placed
+
+                    string sendGridApiKey = System.Configuration.ConfigurationManager.AppSettings["SendGrid.ApiKey"];
+
+                SendGrid.SendGridClient client = new SendGrid.SendGridClient(sendGridApiKey);
+                SendGrid.Helpers.Mail.SendGridMessage message = new SendGrid.Helpers.Mail.SendGridMessage();
+                message.SetTemplateId("713abba9-42f1-41bb-be32-86e3f08347a8");
+
+                //TODO: string.Format("Receipt for order {0}, ord.Id);
+                //message.Subject = string.Format("Receipt for order {0}", ord.id);
+                message.From = new SendGrid.Helpers.Mail.EmailAddress("admin@freshstartjuiceco.com", "Fresh Start Juice Co");
+                message.AddTo(new SendGrid.Helpers.Mail.EmailAddress(model.ShippingEmail));
+                SendGrid.Helpers.Mail.Content contents = new SendGrid.Helpers.Mail.Content("text/html", "Thank you for placing your order with Fresh Start Juice Co");
+                
+                message.AddContent(contents.Type, contents.Type);
+
+                await client.SendEmailAsync(message);
+
+                
+
+
+                    
 
                     string merchantId = ConfigurationManager.AppSettings["Braintree.MerchantID"];
                     string publicKey = ConfigurationManager.AppSettings["Braintree.PublicKey"];

@@ -28,7 +28,11 @@
         <AssociationConnector Association="EricaStoreModel.FK_Review_Product" ManuallyRouted="false" />
         <AssociationConnector Association="EricaStoreModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="EricaStoreModel.MembershipTypeProduct" ManuallyRouted="false" />
-      </Diagram>
+        <AssociationConnector Association="EricaStoreModel.FK_OrderProduct_Product1" />
+        <EntityTypeShape EntityType="EricaStoreModel.MembershipTypeUser" Width="1.5" PointX="7.5" PointY="7.875" />
+        <AssociationConnector Association="EricaStoreModel.FK_MembershipTypeUsers_AspNetUsers" />
+        <AssociationConnector Association="EricaStoreModel.FK_MembershipTypeUsers_MembershipType" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
